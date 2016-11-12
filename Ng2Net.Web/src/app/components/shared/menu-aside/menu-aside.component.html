@@ -1,0 +1,42 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+      <li class="header">NAVIGATION</li>
+
+          <li routerLinkActive="active">
+            <a routerLink="/backend/content-list/html">
+              <i class="fa fa-list"></i>
+              <span>Continut</span>
+            </a>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-gear"></i>
+              <span>With Sublinks</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li [class.active]="true">
+                <a>
+                  <i class="fa fa-file-o"></i>
+                  <span>Sublink Titles</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a (click)="logout()">
+              <i class="fa fa-sign-out"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+      <!-- Optionally, you can add icons to the links -->
+
+    </ul><!-- /.sidebar-menu -->
+  </section>
+  <!-- /.sidebar -->
+</aside>

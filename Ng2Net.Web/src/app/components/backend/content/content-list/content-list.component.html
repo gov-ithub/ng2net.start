@@ -1,0 +1,24 @@
+<app-header></app-header>
+<app-menu-aside></app-menu-aside>
+<div class="content-wrapper" style="min-height: 915px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Administrare continut
+        <small>administrare zone de continut</small>
+      </h1>
+    </section>
+      <section class="content">
+      <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li routerLinkActive="active"><a routerLink="/backend/content-list/html">Continut HTML</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" >
+              <router-outlet></router-outlet>
+            </div>
+            <!-- /.tab-content -->
+          </div>
+      </div>
+    </section>
+</div>

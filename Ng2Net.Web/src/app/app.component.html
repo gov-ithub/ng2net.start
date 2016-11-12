@@ -1,0 +1,6 @@
+<router-outlet></router-outlet>
+<template ngbModalContainer></template>
+<div class="progress progress-sm" *ngIf="(http.loading | async) > 0" style="top:0px; position:fixed; width:100%">
+    <div class="progress-bar active progress-bar-warning progress-bar-striped" role="progressbar" style="width: 100%">
+    </div>
+</div>
