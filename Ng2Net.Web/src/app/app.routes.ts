@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import {  } from './components/shared';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent, ForgotPasswordComponent, ResetPasswordComponent } from './components/shared';
-import { ContentListComponent, HtmlListComponent } from './components/backend/';
+import { ContentListComponent } from './components/backend/';
 import { ClaimsGuardService } from './services'
 
 export const ApplicationRoutes: Routes = [
@@ -12,11 +12,6 @@ export const ApplicationRoutes: Routes = [
       { path: '', component: HomeComponent, data: { claims: [ 'adminLogin' ] },  canActivate: [ ClaimsGuardService ] },
 
       // Backend Routes
-      { path: 'backend/content-list', component: ContentListComponent,  data: { claims: [ 'editHtmlContent', 'developer' ]}, canActivate: [ ClaimsGuardService ],
-      children: [
-                 { path: 'html', component: HtmlListComponent },
-                 { path: 'html/p/:pageNo', component: HtmlListComponent }
-            ]
- }
+      { path: 'backend/content-list', component: ContentListComponent,  data: { claims: [ 'editHtmlContent', 'developer' ]}, canActivate: [ ClaimsGuardService ] }
             
 ];

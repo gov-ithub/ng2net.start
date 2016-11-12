@@ -24,6 +24,9 @@ namespace Ng2Net.WebApi.Controllers
 
         [HttpGet]
         [Route("get")]
-        public Dictionary<string, string> 
+        public Dictionary<string, string> Get()
+        {
+            return HtmlContentQueries.GetHtmlContents(this.DbContext).ToDictionary(x=>x.Name, y=>y.Content);
+        }
     }
 }

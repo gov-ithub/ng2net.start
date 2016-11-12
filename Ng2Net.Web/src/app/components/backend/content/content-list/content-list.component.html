@@ -9,16 +9,44 @@
       </h1>
     </section>
       <section class="content">
-      <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li routerLinkActive="active"><a routerLink="/backend/content-list/html">Continut HTML</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane active" >
-              <router-outlet></router-outlet>
+      <div class="box">
+        <div *ngIf="(http.loading | async) > 0" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
             </div>
-            <!-- /.tab-content -->
-          </div>
+            <div class="box-header with-border">
+              <h3 class="box-title">Bordered Table</h3>
+              <div class="box-tools">
+  <form #myform="ngForm" (submit)="search()">
+<div style="display:inline-block">
+<div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" [(ngModel)]="filterQuery" name="table_search" class="form-control pull-right" placeholder="Cauta">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                   
+
+</div>
+</div>
+  </form>
+  <button type="button" class="btn btn-sm btn-info pull-right box-tools-btn"><i class="fa fa-plus"></i></button>
+
+                                  </div></div>
+                                 
+              
+            <!-- /.box-header -->
+            <div class="box-body">
+
+<table class="table table-striped">
+<tr><th>Nume</th><th>Continut</th></tr>
+<tr *ngFor="let item of htmlContents">
+    <td>{{item.name}}</td>
+    <td>{{item.content}}</td>
+</tr>
+</table>
+
+            </div>
       </div>
+      
     </section>
 </div>

@@ -11,7 +11,7 @@ namespace Ng2Net.Core
     {
         public static List<HtmlContent> GetHtmlContents(DatabaseContext context, string filterQuery = null, int start=0, int count=0)
         {
-            var result = context.HtmlContents.Where(c => filterQuery == null || c.Name.StartsWith(filterQuery)).OrderBy(c=>c.Name);
+            var result = context.HtmlContents.Where(c => string.IsNullOrEmpty(filterQuery) || c.Name.Contains(filterQuery) || c.Content.Contains(filterQuery)).OrderBy(c=>c.Name);
             if (count > 0)
                 result = result.Skip(start - 1).Take(count).OrderBy(x => true);
             return result.ToList();

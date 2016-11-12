@@ -13,12 +13,13 @@ export class HttpClient {
         
     }
     public loading: BehaviorSubject<number> = new BehaviorSubject(0);
+    private headers: Headers;
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
         this.loading.next(this.loading.value+1);
-        var headers = this.createAuthHeader();
-        
-        var retValue = this.http.get(environment.apiUrl + url, { headers: headers }).share();
+        options = this.createAuthHeader(options);
+        console.log(options);
+        var retValue = this.http.get(environment.apiUrl + url, options).share();
 
         retValue
         .catch(()=>{ return Observable.of(true); })
@@ -26,26 +27,33 @@ export class HttpClient {
         return retValue;
     }
 
-    post(url: string, data: any, options?: RequestOptions): Observable<Response> {
+    post(url: string, data: any, options?: RequestOptionsArgs): Observable<Response> {
         this.loading.next(this.loading.value+1);
-        let headers = this.createAuthHeader();
+        options = this.createAuthHeader(options);
         if (data!=null)
-            headers.append('Content-Type', 'application/json');
-        var retValue = this.http.post(environment.apiUrl + url, data, {headers: headers}).share();
+            options.headers.append('Content-Type', 'application/json');
+        var retValue = this.http.post(environment.apiUrl + url, data, options).share();
         retValue
         .catch(()=>{ return Observable.of(true); })
         .subscribe(res=>this.loading.next(this.loading.value-1));
         return retValue;
     }
 
-    private createAuthHeader(): Headers {
+    private createAuthHeader(options: RequestOptionsArgs): RequestOptionsArgs {
         let headers = new Headers({'Accept': 'application/json'}); 
+        
         let authToken = this.cookieService.get('auth_token');
-
         if (authToken !== '') {
             headers.append('Authorization', 'Bearer ' + authToken);
-        }        
-        return headers;
+        }
+
+       if (!options)
+            options = new RequestOptions({ headers: headers });
+            
+        options.headers=headers;
+        
+
+        return options;
     }
 
 

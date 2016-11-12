@@ -16,7 +16,7 @@ import { GlobalService } from './services/global/global.service';
 import { ForgotPasswordComponent, ResetPasswordComponent } from './components/shared';
 import { EqualValidator } from './directives/equal-validator';
 import { XHRBackend, RequestOptions } from '@angular/http';
-import { ContentListComponent, HtmlListComponent } from './components/backend';
+import { ContentListComponent } from './components/backend';
 
 @NgModule({
   declarations: [
@@ -28,8 +28,7 @@ import { ContentListComponent, HtmlListComponent } from './components/backend';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     EqualValidator,
-    ContentListComponent,
-    HtmlListComponent
+    ContentListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,34 @@
 import { Injectable } from '@angular/core';
+import { URLSearchParams } from '@angular/http';
 import { HttpClient } from '../httpClient/httpClient';
 
 @Injectable()
 export class ContentService {
   
-  constructor(private http: HttpClient) { }
+  public htmlContent: any = {};
 
-  listHtmlContents(pageNo: number = 0, pageSize: number = 0)
+  constructor(private http: HttpClient) { 
+    this.getHtmlContents();
+  }
+
+  getHtmlContents()
   {
-    let obs = this.http.get(`/api/content/list?page=${pageNo}&pageSize=${pageSize}`)
+    
+    let obs = this.http.get(`/api/content/get`)
+    .map(result => result.json()).subscribe(result => {
+      this.htmlContent = result;
+      console.log(this.htmlContent);
+    });
+  }
+
+  listHtmlContents(filterQuery: string = null, pageNo: number = 0, pageSize: number = 0)
+  {
+    let params = new URLSearchParams();
+    params.set('filterQuery', filterQuery);
+    params.set('page', pageNo.toString());
+    params.set('pageSize', pageSize.toString());
+
+    let obs = this.http.get(`/api/content/list`, { search: params })
     .map(result => result.json()).share();
     return obs;
   }

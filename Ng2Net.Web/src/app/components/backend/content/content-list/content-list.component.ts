@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentService, HttpClient } from '../../../../services';
 
 @Component({
   selector: 'app-content-list',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentListComponent implements OnInit {
 
-  constructor() { }
+  private htmlContents: any[] = [];
+  private filterQuery: string = '';
+
+  constructor(private contentService: ContentService, private http: HttpClient) { }
 
   ngOnInit() {
+    this.search();
+  }
+
+  search(){
+    this.contentService.listHtmlContents(this.filterQuery).subscribe(result => this.htmlContents = result);
   }
 
 }
