@@ -16,7 +16,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Bordered Table</h3>
               <div class="box-tools">
-  <form #myform="ngForm" (submit)="search()">
+  <form #myform="ngForm" (submit)="refresh()">
 <div style="display:inline-block">
 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" [(ngModel)]="filterQuery" name="table_search" class="form-control pull-right" placeholder="Cauta">
@@ -29,7 +29,7 @@
 </div>
 </div>
   </form>
-  <button type="button" class="btn btn-sm btn-info pull-right box-tools-btn"><i class="fa fa-plus"></i></button>
+  <button type="button" (click)="openEdit({})" class="btn btn-sm btn-info pull-right box-tools-btn"><i class="fa fa-plus"></i></button>
 
                                   </div></div>
                                  
@@ -37,11 +37,18 @@
             <!-- /.box-header -->
             <div class="box-body">
 
-<table class="table table-striped">
-<tr><th>Nume</th><th>Continut</th></tr>
+<table class="table table-hover">
+<tr>
+  <th>Nume</th>
+  <th>Continut</th>
+  <th>Url</th>
+  <th style="width:50px;" class="text-center">Sterge</th>
+</tr>
 <tr *ngFor="let item of htmlContents">
-    <td>{{item.name}}</td>
+    <td><a (click)="openEdit(item)">{{item.name}}</a></td>
     <td>{{item.content}}</td>
+    <td>{{item.url}}</td>
+    <td><button class="btn btn-sm btn-default" (click)="delete(item)" type="button"><i class="fa fa-trash"></i></button></td>
 </tr>
 </table>
 

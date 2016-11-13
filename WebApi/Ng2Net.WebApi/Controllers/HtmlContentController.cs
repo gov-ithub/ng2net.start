@@ -28,5 +28,36 @@ namespace Ng2Net.WebApi.Controllers
         {
             return HtmlContentQueries.GetHtmlContents(this.DbContext).ToDictionary(x=>x.Name, y=>y.Content);
         }
+
+        [HttpGet]
+        [Route("get/{id}")]
+        public HtmlContentModel Get(string id)
+        {
+            Mapper.Initialize(cfg => { cfg.CreateMap<HtmlContent, HtmlContentModel>(); });
+
+            return Mapper.Map<HtmlContentModel>(HtmlContentQueries.GetHtmlContent(DbContext, id));
+        }
+
+        [HttpPost]
+        [Route("save")]
+        public HtmlContentModel Get([FromBody] HtmlContentModel model)
+        {
+            HtmlContent content = string.IsNullOrEmpty(model.Id) ? new HtmlContent() : HtmlContentQueries.GetHtmlContent(this.DbContext, model.Id);
+            Mapper.Initialize(cfg => { cfg.CreateMap<HtmlContentModel, HtmlContent>(); });
+            Mapper.Map(model, content);
+            content.Id = string.IsNullOrEmpty(content.Id) ? Guid.NewGuid().ToString() : content.Id;
+            HtmlContentQueries.SaveHtmlContent(content, this.DbContext);
+            Mapper.Initialize(cfg => { cfg.CreateMap<HtmlContent, HtmlContentModel>(); });
+            return Mapper.Map<HtmlContentModel>(content);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public object Delete(string id)
+        {
+            HtmlContentQueries.DeleteHtmlContent(this.DbContext, id);
+            return null;
+        }
+
     }
 }

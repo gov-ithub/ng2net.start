@@ -18,9 +18,17 @@ export class HttpClient {
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
         this.loading.next(this.loading.value+1);
         options = this.createAuthHeader(options);
-        console.log(options);
         var retValue = this.http.get(environment.apiUrl + url, options).share();
+        retValue
+        .catch(()=>{ return Observable.of(true); })
+        .subscribe(res=>this.loading.next(this.loading.value-1));
+        return retValue;
+    }
 
+    delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
+        this.loading.next(this.loading.value+1);
+        options = this.createAuthHeader(options);
+        var retValue = this.http.delete(environment.apiUrl + url, options).share();
         retValue
         .catch(()=>{ return Observable.of(true); })
         .subscribe(res=>this.loading.next(this.loading.value-1));

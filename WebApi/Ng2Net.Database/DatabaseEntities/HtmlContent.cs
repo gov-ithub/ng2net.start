@@ -22,6 +22,9 @@ namespace Ng2Net.Database
         [StringLength(255)]
         public string Name { get; set; }
 
+        [StringLength(255)]
+        public string Url { get; set; }
+
         public string Content { get; set; }
 
     }

@@ -16,7 +16,8 @@ import { GlobalService } from './services/global/global.service';
 import { ForgotPasswordComponent, ResetPasswordComponent } from './components/shared';
 import { EqualValidator } from './directives/equal-validator';
 import { XHRBackend, RequestOptions } from '@angular/http';
-import { ContentListComponent } from './components/backend';
+import { ContentListComponent, ContentEditComponent } from './components/backend';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ContentListComponent } from './components/backend';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     EqualValidator,
-    ContentListComponent
+    ContentListComponent,
+    ContentEditComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ import { ContentListComponent } from './components/backend';
     HttpModule,
     RouterModule.forRoot(ApplicationRoutes),
     NgbModule.forRoot(),
+    CKEditorModule,
   ],
   providers: [
      ClaimsGuardService,
@@ -46,7 +49,7 @@ import { ContentListComponent } from './components/backend';
      ContentService
   ],
   entryComponents: [
-    LoginComponent,
+    ContentEditComponent
   ],
   bootstrap: [AppComponent]
 })

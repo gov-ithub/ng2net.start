@@ -118,6 +118,10 @@
     <Compile Include="Migrations\201611112225149_HtmlContents3.Designer.cs">
       <DependentUpon>201611112225149_HtmlContents3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611122054310_HtmlContentUrl.cs" />
+    <Compile Include="Migrations\201611122054310_HtmlContentUrl.Designer.cs">
+      <DependentUpon>201611122054310_HtmlContentUrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -145,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611112225149_HtmlContents3.resx">
       <DependentUpon>201611112225149_HtmlContents3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611122054310_HtmlContentUrl.resx">
+      <DependentUpon>201611122054310_HtmlContentUrl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
