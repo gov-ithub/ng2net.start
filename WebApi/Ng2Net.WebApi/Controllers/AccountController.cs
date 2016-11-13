@@ -16,6 +16,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Owin;
 using Ng2Net.Core;
+using Ng2Web.WebApi.CustomAttributes;
 
 namespace Ng2Net.WebApi.Controllers
 {
@@ -39,16 +40,14 @@ namespace Ng2Net.WebApi.Controllers
         public ClaimsIdentityModel GetCurrentUser()
         {
             
-            ClaimsIdentity cl = (ClaimsIdentity)User.Identity;
-            ApplicationUser user = UserManager.FindById(cl.GetUserId());
-            if (user == null)
+            if (CurrentUser == null)
                 return null;
             Mapper.Initialize(cfg => {
                 cfg.CreateMap<ApplicationUser, ClaimsIdentityModel>();
                 cfg.CreateMap<RoleClaim, ClaimModel>();
             });
-            ClaimsIdentityModel result = Mapper.Map<ClaimsIdentityModel>(user);
-            result.Claims = AccountQueries.GetClaimsDictionaryByUser(user, this.DbContext);
+            ClaimsIdentityModel result = Mapper.Map<ClaimsIdentityModel>(CurrentUser);
+            result.Claims = AccountQueries.GetClaimsDictionaryByUser(CurrentUser, this.DbContext);
             return result;
         }
 
@@ -58,7 +57,7 @@ namespace Ng2Net.WebApi.Controllers
         {
             ApplicationUser user = await UserManager.FindByEmailAsync(userModel.Email);
             if (user == null)
-                return new { error=true, message = "Usernameul nu a fost gasit" };
+                return new { error=true, message = "email_not_found" };
             Notification not = new Notification
             {
                 Subject = "Reset your password",
@@ -68,7 +67,7 @@ namespace Ng2Net.WebApi.Controllers
             };
             this.DbContext.Notifications.Add(not);
             this.DbContext.SaveChanges();
-            return new { result="success", message="E-mail trimis cu succes" };
+            return new { result="success", message="email_sent" };
             
         }
 
@@ -78,9 +77,9 @@ namespace Ng2Net.WebApi.Controllers
         {
             IdentityResult result = await UserManager.ResetPasswordAsync(resetModel.UserId, resetModel.Token, resetModel.Password);
             if (result.Succeeded)
-                return new { message = "Parola resetata cu succes" };
+                return new { message = "password_reset" };
             else
-                return new { error = true, message = result.Errors.First() };
+                return new { error = true, message = "password_reset_failed" };
 
         }
     }

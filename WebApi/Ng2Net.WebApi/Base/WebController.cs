@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Microsoft.Owin.Security.DataProtection;
+using System.Security.Claims;
 
 namespace Ng2Net.WebApi.Base
 {
@@ -19,8 +20,9 @@ namespace Ng2Net.WebApi.Base
         private DatabaseContext context;
         private ApplicationUserManager _userManager;
         private static DpapiDataProtectionProvider _tokenProvider;
+        private ApplicationUser _currentUser;
 
-        protected DatabaseContext DbContext {
+        public DatabaseContext DbContext {
             get
             {
                 return context ?? (context = new DatabaseContext());
@@ -42,5 +44,16 @@ namespace Ng2Net.WebApi.Base
             }
         }
 
+        public ApplicationUser CurrentUser {
+            get {
+                if (_currentUser == null)
+                {
+                    ClaimsIdentity cl = (ClaimsIdentity)User.Identity;
+                    this._currentUser = UserManager.FindById(cl.GetUserId());
+                }
+
+                return _currentUser;
+            }
+        }
     }
 }

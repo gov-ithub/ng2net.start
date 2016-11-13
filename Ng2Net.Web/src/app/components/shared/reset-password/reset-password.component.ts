@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UserAccountService } from '../../../services';
+import { UserAccountService, ContentService } from '../../../services';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm, NgControl } from '@angular/forms';
 
@@ -22,7 +22,7 @@ export class ResetPasswordComponent implements OnInit {
 
 
 
-  constructor(private userAccountService: UserAccountService, private route: ActivatedRoute) {
+  constructor(private userAccountService: UserAccountService, private route: ActivatedRoute, private contentService: ContentService) {
   }
   
   ngOnInit() {

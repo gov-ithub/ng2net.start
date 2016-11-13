@@ -189,6 +189,7 @@
     <Compile Include="Base\WebController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />
+    <Compile Include="CustomAttributes\AuthenticationAttribute.cs" />
     <Compile Include="Models\HtmlContentModel.cs" />
     <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\ClaimsIdentityModel.cs" />

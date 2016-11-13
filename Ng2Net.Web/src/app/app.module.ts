@@ -13,11 +13,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent, MenuAsideComponent, AppHeaderComponent } from './components/shared';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { GlobalService } from './services/global/global.service';
-import { ForgotPasswordComponent, ResetPasswordComponent } from './components/shared';
+import { ForgotPasswordComponent, ResetPasswordComponent, HtmlComponent } from './components/shared';
 import { EqualValidator } from './directives/equal-validator';
 import { XHRBackend, RequestOptions } from '@angular/http';
 import { ContentListComponent, ContentEditComponent } from './components/backend';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { HtmlContentPipe } from './directives/htmlContentPipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { CKEditorModule } from 'ng2-ckeditor';
     ResetPasswordComponent,
     EqualValidator,
     ContentListComponent,
-    ContentEditComponent
+    ContentEditComponent,
+    HtmlComponent,
+    HtmlContentPipe
   ],
   imports: [
     BrowserModule,

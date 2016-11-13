@@ -4,25 +4,25 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Introduceti adresa de e-mail si parola pentru autentificare</p>
+    <p class="login-box-msg"><app-html contentName="backend.login.prompt"></app-html></p>
   <div class="callout callout-danger" *ngIf="userAccountService.authError">{{ userAccountService.authError }}</div>
 
     <form #myForm="ngForm" novalidate>
       <div class="form-group has-feedback">
-        <input type="text" placeholder="adresa e-mail" name="email" [(ngModel)]="currentUser.email" required class="form-control">
+        <input type="text" placeholder="{{ 'backend.login.email' | htmlContent:contentService.htmlContent }}" name="email" [(ngModel)]="currentUser.email" required class="form-control">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" placeholder="parola" class="form-control" name="password" required [(ngModel)]="currentUser.password">
+        <input type="password" placeholder="{{ 'backend.login.password' | htmlContent:contentService.htmlContent }}" class="form-control" name="password" required [(ngModel)]="currentUser.password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-7">
-          <a routerLink="/forgot-password">Ai uitat parola?</a>
+          <a routerLink="/forgot-password"><app-html contentName="backend.login.forgotPassword"></app-html></a>
         </div>
         <!-- /.col -->
         <div class="col-xs-5">
-          <button type="submit" (click)="userLogin()" class="btn btn-primary btn-block btn-flat">Autentificare</button>
+          <button type="submit" (click)="userLogin()" class="btn btn-primary btn-block btn-flat"><app-html contentName="backend.login.signin"></app-html></button>
         </div>
         <!-- /.col -->
       </div>

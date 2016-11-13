@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UserAccountService } from '../../../services';
+import { UserAccountService, ContentService } from '../../../services';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,7 @@ export class ForgotPasswordComponent implements OnInit {
   @ViewChild("myForm")
   private myForm: NgForm;
 
-  constructor(private userAccountService: UserAccountService) { }
+  constructor(private userAccountService: UserAccountService, private contentService: ContentService) { }
 
   sendPasswordReset() {
     if (!this.myForm.valid)

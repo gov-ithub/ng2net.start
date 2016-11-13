@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserAccountService } from '../../../services/useraccount/user-account.service';
+import { UserAccountService, ContentService } from '../../../services';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(// private activeModal: NgbActiveModal, 
   private userAccountService: UserAccountService,
-  private router: Router) { }
+  private router: Router,
+  private contentService: ContentService ) { }
 
   ngOnInit() { 
   }

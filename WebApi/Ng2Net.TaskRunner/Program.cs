@@ -6,7 +6,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeltaStore.TaskRunner
+namespace Ng2Web.TaskRunner
 {
     static class Program
     {

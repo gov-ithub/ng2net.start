@@ -5,33 +5,18 @@
   <section class="sidebar">
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
-      <li class="header">NAVIGATION</li>
+      <li class="header"><app-html contentName="backend.menu.navigation"></app-html></li>
 
           <li routerLinkActive="active">
             <a routerLink="/backend/content-list">
               <i class="fa fa-list"></i>
-              <span>Continut</span>
+              <span><app-html contentName="backend.menu.content"></app-html></span>
             </a>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-gear"></i>
-              <span>With Sublinks</span>
-              <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-              <li [class.active]="true">
-                <a>
-                  <i class="fa fa-file-o"></i>
-                  <span>Sublink Titles</span>
-                </a>
-              </li>
-            </ul>
           </li>
           <li>
             <a (click)="logout()">
               <i class="fa fa-sign-out"></i>
-              <span>Logout</span>
+              <span><app-html contentName="backend.menu.logout"></app-html></span>
             </a>
           </li>
       <!-- Optionally, you can add icons to the links -->

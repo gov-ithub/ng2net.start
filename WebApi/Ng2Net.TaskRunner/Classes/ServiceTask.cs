@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace DeltaStore.TaskRunner.Classes
+namespace Ng2Web.TaskRunner.Classes
 {
     public class ServiceTask
     {

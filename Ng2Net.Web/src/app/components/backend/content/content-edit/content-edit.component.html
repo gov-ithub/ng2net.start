@@ -2,7 +2,7 @@
  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
       <span aria-hidden="true">&times;</span>
     </button>
-     <h4 class="modal-title">Edit</h4>
+     <h4 class="modal-title"><app-html contentName="backend.content.edit"></app-html></h4>
 </div>
 <form novalidate (submit)="save()">
 <div class="modal-body">
@@ -10,13 +10,13 @@
 <div class="row">
   <div class="col-lg-8">
    <div class="form-group">
-    <label>Nume:</label>
+    <label><app-html contentName="backend.content.name"></app-html>:</label>
     <input class="form-control" required [(ngModel)]="htmlContent.name" name="name" />
    </div>
   </div>
   <div class="col-lg-4">
   <div class="form-group">
-    <label>Url:</label>
+    <label><app-html contentName="backend.content.url"></app-html>:</label>
     <input class="form-control" [(ngModel)]="htmlContent.url" name="url" />
    </div>
 </div>
@@ -26,6 +26,6 @@
     [config]="{skin: 'flat,/assets/ckeditor/flat/', customConfig: '/assets/ckeditor/config.js'}"></ckeditor>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="submit">Salveaza</button>
+    <button class="btn btn-primary" type="submit"><app-html contentName="backend.content.save"></app-html></button>
 </div>
 </form>
