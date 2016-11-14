@@ -19,13 +19,12 @@ export class ContentListComponent implements OnInit {
     this.refresh();
   }
 
-  
-  refresh(){
+  refresh() {
     this.contentService.listHtmlContents(this.filterQuery).subscribe(result => this.htmlContents = result);
   }
 
   openEdit(htmlContent: any) {
-    var modal = this.modalService.open(ContentEditComponent, { size: 'lg', keyboard: false });
+    let modal = this.modalService.open(ContentEditComponent, { size: 'lg', keyboard: false });
     modal.componentInstance.htmlContent = htmlContent;
     modal.componentInstance.parentComponent = this;
   }

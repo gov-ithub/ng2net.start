@@ -4,7 +4,7 @@
     </button>
      <h4 class="modal-title"><app-html contentName="backend.content.edit"></app-html></h4>
 </div>
-<form novalidate (submit)="save()">
+<form novalidate #myForm="ngForm" (submit)="save()">
 <div class="modal-body">
  <div class="callout callout-success" *ngIf="result">{{ result }}</div>
 <div class="row">

@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { ApplicationRoutes } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserAccountService, HttpClient, ContentService, ClaimsGuardService } from './services';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,8 +13,7 @@ import { LoginComponent, MenuAsideComponent, AppHeaderComponent } from './compon
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { GlobalService } from './services/global/global.service';
 import { ForgotPasswordComponent, ResetPasswordComponent, HtmlComponent } from './components/shared';
-import { EqualValidator } from './directives/equal-validator';
-import { XHRBackend, RequestOptions } from '@angular/http';
+import { EqualValidatorDirective } from './directives/equal-validator';
 import { ContentListComponent, ContentEditComponent } from './components/backend';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { HtmlContentPipe } from './directives/htmlContentPipe';
@@ -29,7 +27,7 @@ import { HtmlContentPipe } from './directives/htmlContentPipe';
     AppHeaderComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    EqualValidator,
+    EqualValidatorDirective,
     ContentListComponent,
     ContentEditComponent,
     HtmlComponent,

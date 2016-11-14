@@ -8,7 +8,7 @@ import { ContentService } from '../../../services';
 })
 export class HtmlComponent implements OnInit {
 
-  @Input("contentName")
+  @Input('contentName')
   private contentName: string;
 
   constructor(private contentService: ContentService) { }

@@ -11,9 +11,7 @@ import { UserAccountService, ContentService } from '../../../services';
 export class LoginComponent implements OnInit {
 
   public currentUser: any = {};
-  private loginError: string;
-  private navigateTo: string;
-  @ViewChild("myForm")
+  @ViewChild('myForm')
   private myForm: NgForm;
 
   constructor(// private activeModal: NgbActiveModal, 

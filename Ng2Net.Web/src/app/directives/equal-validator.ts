@@ -1,23 +1,29 @@
-import { Directive, forwardRef, Attribute } from '@angular/core';
+import { Directive, forwardRef, Input } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 @Directive({
     selector: '[validateEqual][formControlName],[validateEqual][formControl],[validateEqual][ngModel]',
     providers: [
-        { provide: NG_VALIDATORS, useExisting: forwardRef(() => EqualValidator), multi: true }
+        { provide: NG_VALIDATORS, useExisting: forwardRef(() => EqualValidatorDirective), multi: true }
     ]
 })
-export class EqualValidator implements Validator {
-    constructor( @Attribute('validateEqual') public validateEqual: string,
-        @Attribute('reverse') public reverse: string) {
+export class EqualValidatorDirective implements Validator {
+ 
+    subscribedToChild: boolean;
 
+    @Input()
+    public validateEqual: string;
+    @Input()
+    public reverse: string;
+
+    constructor() {
     }
 
     private get isReverse() {
         if (!this.reverse) return false;
-        return this.reverse === 'true' ? true: false;
+        return this.reverse === 'true' ? true : false;
     }
-    subscribedToChild: boolean;
+
     validate(c: AbstractControl): { [key: string]: any } {
         // self value
         let v = c.value;
@@ -25,14 +31,14 @@ export class EqualValidator implements Validator {
         let e = c.root.get(this.validateEqual);
         
         if (!this.subscribedToChild)
-            e.valueChanges.subscribe(()=> { c.updateValueAndValidity(); } );
+            e.valueChanges.subscribe(() => { c.updateValueAndValidity(); } );
         
-        this.subscribedToChild=true;
+        this.subscribedToChild = true;
         // value not equal
         if (e && v !== e.value && !this.isReverse) {
           return {
             validateEqual: false
-          }
+          };
         }
 
         // value equal and reverse
@@ -45,7 +51,7 @@ export class EqualValidator implements Validator {
         if (e && v !== e.value && this.isReverse) {
             e.setErrors({
                 validateEqual: false
-            })
+            });
         }
 
         return null;

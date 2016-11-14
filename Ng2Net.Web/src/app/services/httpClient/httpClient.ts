@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Request, RequestOptions, Headers, ConnectionBackend, Response, RequestOptionsArgs } from '@angular/http';
+import { Http, RequestOptions, Headers, Response, RequestOptionsArgs } from '@angular/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/share';
@@ -9,41 +9,42 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @Injectable()
 export class HttpClient {
+
+    public loading: BehaviorSubject<number> = new BehaviorSubject(0);
+
     constructor(private http: Http, private cookieService: CookieService) {
         
     }
-    public loading: BehaviorSubject<number> = new BehaviorSubject(0);
-    private headers: Headers;
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        this.loading.next(this.loading.value+1);
+        this.loading.next(this.loading.value + 1);
         options = this.createAuthHeader(options);
-        var retValue = this.http.get(environment.apiUrl + url, options).share();
+        let retValue = this.http.get(environment.apiUrl + url, options).share();
         retValue
-        .catch(()=>{ return Observable.of(true); })
-        .subscribe(res=>this.loading.next(this.loading.value-1));
+        .catch(() => { return Observable.of(true); })
+        .subscribe(res => this.loading.next(this.loading.value - 1));
         return retValue;
     }
 
     delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        this.loading.next(this.loading.value+1);
+        this.loading.next(this.loading.value + 1);
         options = this.createAuthHeader(options);
-        var retValue = this.http.delete(environment.apiUrl + url, options).share();
+        let retValue = this.http.delete(environment.apiUrl + url, options).share();
         retValue
-        .catch(()=>{ return Observable.of(true); })
-        .subscribe(res=>this.loading.next(this.loading.value-1));
+        .catch(() => { return Observable.of(true); })
+        .subscribe(res => this.loading.next(this.loading.value - 1));
         return retValue;
     }
 
     post(url: string, data: any, options?: RequestOptionsArgs): Observable<Response> {
-        this.loading.next(this.loading.value+1);
+        this.loading.next(this.loading.value + 1);
         options = this.createAuthHeader(options);
-        if (data!=null)
+        if (data !== null)
             options.headers.append('Content-Type', 'application/json');
-        var retValue = this.http.post(environment.apiUrl + url, data, options).share();
+        let retValue = this.http.post(environment.apiUrl + url, data, options).share();
         retValue
-        .catch(()=>{ return Observable.of(true); })
-        .subscribe(res=>this.loading.next(this.loading.value-1));
+        .catch(() => { return Observable.of(true); })
+        .subscribe(res => this.loading.next(this.loading.value - 1));
         return retValue;
     }
 
@@ -58,11 +59,8 @@ export class HttpClient {
        if (!options)
             options = new RequestOptions({ headers: headers });
             
-        options.headers=headers;
+        options.headers = headers;
         
-
         return options;
     }
-
-
 }

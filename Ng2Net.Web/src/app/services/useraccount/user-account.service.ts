@@ -23,7 +23,7 @@ export class UserAccountService {
 
     let obs = this.http.post('/api/token', body, new RequestOptions({ headers: headers }))
       .map((result) => result.json())
-      .catch((res) => { console.log(res);return Observable.of(res).map(o => o.json()); })
+      .catch((res) => { console.log(res); return Observable.of(res).map(o => o.json()); })
       .share();
 
       obs.subscribe((result) => {
@@ -38,7 +38,7 @@ export class UserAccountService {
         }
 
       },
-      (err)=> { this.authError=err; });
+      (err) => { this.authError = err; });
       return obs;
   }
 
@@ -58,14 +58,14 @@ export class UserAccountService {
   }
 
   sendResetPasswordLink(email: string) {
-        let obs = this.http.post('/api/account/send-reset-password', { "Email": email })
+        let obs = this.http.post('/api/account/send-reset-password', { 'Email': email })
       .map((result) => result.json())
       .share();
       return obs;
   }
 
-  resetPassword(userId: string, token: string, password:string){
-        let obs = this.http.post('/api/account/reset-password', { "UserId": userId, "Token": token, "Password": password })
+  resetPassword(userId: string, token: string, password: string) {
+        let obs = this.http.post('/api/account/reset-password', { 'UserId': userId, 'Token': token, 'Password': password })
       .map((result) => result.json())
       .share();
       return obs;

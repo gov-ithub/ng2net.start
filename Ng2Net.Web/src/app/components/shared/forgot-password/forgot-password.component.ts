@@ -11,20 +11,21 @@ export class ForgotPasswordComponent implements OnInit {
 
   private email: string = '';
   private result: any = {};
-  @ViewChild("myForm")
+  @ViewChild('myForm')
   private myForm: NgForm;
 
   constructor(private userAccountService: UserAccountService, private contentService: ContentService) { }
 
   sendPasswordReset() {
-    if (!this.myForm.valid)
+    if (!this.myForm.valid) {
       return;
+    }
 
     this.userAccountService.sendResetPasswordLink(this.email).subscribe((result) => {
-      this.result=result;
+      this.result = result;
     });
   }
-  
+
   ngOnInit() {
   }
 }

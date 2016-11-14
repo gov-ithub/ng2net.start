@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserAccountService, ContentService } from '../../../services';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm, NgControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-reset-password',
@@ -17,7 +17,7 @@ export class ResetPasswordComponent implements OnInit {
   private queryParams: any = {};
   private showError: boolean = false;
 
-  @ViewChild("myForm")
+  @ViewChild('myForm')
   private myForm: NgForm;
 
 
@@ -26,21 +26,20 @@ export class ResetPasswordComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.route.params.subscribe((res)=> {
+    this.route.params.subscribe((res) => {
       this.params = res;
     });
-    this.route.queryParams.subscribe((res)=> {
+    this.route.queryParams.subscribe((res) => {
       this.queryParams = res;
-    })
+    });
   }
 
-  resetPassword(){
-
+  resetPassword() {
     this.showError = !this.myForm.valid;
     if (!this.myForm.valid)
       return;
       console.log(this.m_password);
-        this.userAccountService.resetPassword(this.params["userId"], this.queryParams["token"], this.m_password).subscribe((result) => {
+        this.userAccountService.resetPassword(this.params['userId'], this.queryParams['token'], this.m_password).subscribe((result) => {
       this.result = result;
     });
 
