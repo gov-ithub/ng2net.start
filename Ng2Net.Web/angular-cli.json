@@ -21,10 +21,7 @@
       "styles": [
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css",
-        "../node_modules/font-awesome/css/font-awesome.css",
-        "assets/admin/css/AdminLTE.css",
-        "assets/admin/css/skins/skin-black-light.css",
-        "assets/admin/css/custom.css"
+        "../node_modules/font-awesome/css/font-awesome.css"
       ],
       "scripts": [
         "../node_modules/moment/min/moment.min.js",

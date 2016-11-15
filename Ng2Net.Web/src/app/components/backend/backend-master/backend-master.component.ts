@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserAccountService } from '../../../services';
-import '../assets/js/app.js';
+//import '../assets/js/app.js';
 
 @Component({
   selector: 'app-backend-master',
   templateUrl: './backend-master.component.html',
-  styleUrls: ['./backend-master.component.css']
+  styleUrls: ['./backend-master.component.css', '../_assets/css/AdminLTE.css', '../_assets/css/skins/skin-black-light.css', '../_assets/css/Custom.css' ],
+  encapsulation: ViewEncapsulation.None
 })
 export class BackendMasterComponent implements OnInit {
 
