@@ -14,17 +14,41 @@ import { HtmlComponent } from './components/shared';
 import { HtmlContentPipe } from './directives';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    EqualValidatorDirective,
+    HtmlComponent, 
+    HtmlContentPipe,
 
   ],
   imports: [
-    BackendModule,
-    SharedModule
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    RouterModule.forRoot(ApplicationRoutes),
+    NgbModule.forRoot(),
+    CKEditorModule,
   ],
-  bootstrap: [AppComponent],
+  providers: [
+     ClaimsGuardService,
+     CookieService,
+     UserAccountService,
+     GlobalService,
+     HttpClient,
+     ContentService
+  ],
+  exports: [ 
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    RouterModule,
+    NgbModule,
+    CKEditorModule,
+    EqualValidatorDirective,
+    HtmlComponent, 
+    HtmlContentPipe,
+
+],
 })
-export class AppModule { }
+export class SharedModule { }

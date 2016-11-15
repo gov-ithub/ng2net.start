@@ -18,7 +18,7 @@
       </div>
       <div class="row">
         <div class="col-xs-7">
-          <a routerLink="/forgot-password"><app-html contentName="backend.login.forgotPassword"></app-html></a>
+          <a [routerLink]="'/' +activatedRoute.snapshot.parent.url + '/forgot-password'"><app-html contentName="backend.login.forgotPassword"></app-html></a>
         </div>
         <!-- /.col -->
         <div class="col-xs-5">

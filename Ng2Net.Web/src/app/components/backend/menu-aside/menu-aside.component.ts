@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserAccountService } from '../../../services/useraccount/user-account.service';
 @Component({
   selector: 'app-menu-aside',
@@ -8,7 +8,7 @@ import { UserAccountService } from '../../../services/useraccount/user-account.s
 })
 export class MenuAsideComponent implements OnInit {
 
-  constructor(private userAccountService: UserAccountService, private router: Router) {
+  constructor(private userAccountService: UserAccountService, private router: Router, private route: ActivatedRoute) {
 
   }
 
@@ -17,6 +17,6 @@ export class MenuAsideComponent implements OnInit {
 
   logout() {
     this.userAccountService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate([this.route.snapshot.url.toString() + `/login`]);
   }
 }

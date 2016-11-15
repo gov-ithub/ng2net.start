@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccountService } from '../../../services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from '../index';
 
 
 @Component({
@@ -17,7 +16,6 @@ export class NavbarComponent implements OnInit {
   }
 
   openLogin() {
-    this.modalService.open(LoginComponent, { size: 'sm', keyboard: false });
   }
 
 }

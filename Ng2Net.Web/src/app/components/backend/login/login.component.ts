@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserAccountService, ContentService } from '../../../services';
 
 @Component({
@@ -8,7 +8,7 @@ import { UserAccountService, ContentService } from '../../../services';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class BackendLoginComponent implements OnInit {
 
   public currentUser: any = {};
   @ViewChild('myForm')
@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(// private activeModal: NgbActiveModal, 
   private userAccountService: UserAccountService,
   private router: Router,
-  private contentService: ContentService ) { }
+  private contentService: ContentService,
+  private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit() { 
   }
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
       return;
     this.userAccountService.login(this.currentUser).subscribe((result) => {
       if (!result.error) {
-        this.router.navigate([ this.userAccountService.redirectTo || '' ]);
+        this.router.navigate([ this.activatedRoute.snapshot.parent.url.toString() + "/" + (this.userAccountService.redirectTo || '') ]);
       }
     });
   }

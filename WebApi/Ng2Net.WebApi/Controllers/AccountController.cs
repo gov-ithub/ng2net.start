@@ -61,7 +61,7 @@ namespace Ng2Net.WebApi.Controllers
             Notification not = new Notification
             {
                 Subject = "Reset your password",
-                Body = "http://ng2net.start/reset-password/" + HttpContext.Current.Server.UrlEncode(user.Id) + "?token=" + HttpUtility.UrlEncode(this.UserManager.GeneratePasswordResetToken(user.Id)),
+                Body = "http://ng2net.start/admin/reset-password/" + HttpContext.Current.Server.UrlEncode(user.Id) + "?token=" + HttpUtility.UrlEncode(this.UserManager.GeneratePasswordResetToken(user.Id)),
                 From = "carol.braileanu@gmail.com",
                 To = user.Email
             };

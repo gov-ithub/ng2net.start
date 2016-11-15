@@ -10,7 +10,7 @@
       "assets": [
         "assets",
         "favicon.ico",
-		"web.config"
+		    "web.config"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -29,8 +29,7 @@
       "scripts": [
         "../node_modules/moment/min/moment.min.js",
         "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.js",
-        "assets/admin/js/app.js"
+        "../node_modules/bootstrap/dist/js/bootstrap.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

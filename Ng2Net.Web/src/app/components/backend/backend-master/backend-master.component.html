@@ -1,0 +1,5 @@
+<app-header *ngIf="userAccountService.currentUser?.claims?.adminLogin === 'true'"></app-header>
+<app-menu-aside *ngIf="userAccountService.currentUser?.claims?.adminLogin === 'true'"></app-menu-aside>
+<div [class]="userAccountService.currentUser?.claims?.adminLogin ? 'content-wrapper' : ''" style="min-height: 915px;">
+    <router-outlet></router-outlet>
+</div>

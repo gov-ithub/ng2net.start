@@ -13,18 +13,18 @@ export class ClaimsGuardService implements CanActivate {
    canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-     ) {
+    ) {
     let obs = this.userAccountService.getCurrentUser(true);
      return obs.map((result) => {
-      let retValue = false;
+      let retValue = true;
       route.data['claims'].forEach(x => {
-        retValue = retValue || (result !== null && result.claims[x] === 'true'); 
+        retValue = retValue && (result !== null && result.claims[x] === 'true'); 
       });
       if (!retValue) {
             this.userAccountService.redirectTo = route.url.toString();
             if (result)
               this.userAccountService.authError = 'Nu aveti suficiente drepturi pentru a accesa pagina dorita';
-            this.router.navigate(['/login']);          
+            this.router.navigate([route.parent.url + '/login']);          
       } else {
         this.userAccountService.authError = undefined;
       } 
