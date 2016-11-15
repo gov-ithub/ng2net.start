@@ -15,7 +15,7 @@ import { BackendLoginComponent,
 import { HtmlComponent  } from '../shared';
 import { HtmlContentPipe, EqualValidatorDirective } from '../../directives';
 import { BackendRoutes } from './backend.routes';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({

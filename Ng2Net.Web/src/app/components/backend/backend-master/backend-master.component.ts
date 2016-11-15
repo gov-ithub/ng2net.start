@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UserAccountService } from '../../../services';
-//import '../assets/js/app.js';
+import { UserAccountService, HttpClient } from '../../../services';
+import '../_assets/js/app.js';
 
 @Component({
   selector: 'app-backend-master',
@@ -10,7 +10,7 @@ import { UserAccountService } from '../../../services';
 })
 export class BackendMasterComponent implements OnInit {
 
-  constructor(private userAccountService: UserAccountService) { }
+  constructor(private userAccountService: UserAccountService, private http: HttpClient) { }
 
   ngOnInit() {
   }

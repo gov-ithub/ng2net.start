@@ -14,7 +14,8 @@ import { HtmlComponent } from './components/shared';
 import { HtmlContentPipe } from './directives';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SharedModule } from './shared.module';
+import { SharedModule } from './components/shared/shared.module';
+import { PublicModule } from './components/public/public.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SharedModule } from './shared.module';
   ],
   imports: [
     BackendModule,
-    SharedModule
+    SharedModule,
+    PublicModule
   ],
   bootstrap: [AppComponent],
 })
