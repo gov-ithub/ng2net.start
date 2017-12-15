@@ -16,8 +16,4 @@ Vezi wiki
 
 # Login
 
-<<<<<<< HEAD
-Rolurile, drepturile si utilizatori se creaza in metoda `Seed()`.
-=======
 Rolurile, drepturile si utilizatorii se creaza in metoda `Seed()`.
->>>>>>> develop
